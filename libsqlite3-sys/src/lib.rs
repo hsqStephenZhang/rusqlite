@@ -25,6 +25,9 @@ pub fn SQLITE_TRANSIENT() -> sqlite3_destructor_type {
     Some(unsafe { mem::transmute(-1_isize) })
 }
 
+#[no_mangle]
+pub static mut sqlite3_api: *mut sqlite3_api_routines = 0 as *mut sqlite3_api_routines;
+
 #[allow(clippy::all)]
 mod bindings {
     include!(concat!(env!("OUT_DIR"), "/bindgen.rs"));
